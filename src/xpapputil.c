@@ -40,7 +40,7 @@ XpauContext *XpauGetContext( const char *printername )
   if( XpuGetPrinter(printername, &pdpy, &pcontext) != 1 )
     return NULL; 
   
-  if( (context = (XpauContext *)malloc(sizeof(XpauContext))) )
+  if( context = (XpauContext *)malloc(sizeof(XpauContext)) )
   {
     memset(context, 0, sizeof(XpauContext));
     
@@ -131,13 +131,15 @@ XpAuErrorValue XpauParseArg( const char *arg_name, const char *arg_value, XpauCo
     return XpAuError_success;
   }  
   else if( !strcasecmp(arg_name, "resolution") )
-  {   
+  {
+    int arg_res = atoi(arg_value);
+    
     if( !(context->resolution_list && (context->supported_doc_attributes & XPUATTRIBUTESUPPORTED_DEFAULT_PRINTER_RESOLUTION)) )
       return XpAuError_unsupported_resolution;
 
-    docvalues->resolution = XpuFindResolutionByName(context->resolution_list,
+    docvalues->resolution = XpuFindResolution(context->resolution_list,
                                               context->resolution_num_list_entries, 
-                                              arg_value);
+                                              arg_res, arg_res);
 
     if( !docvalues->resolution )
       return XpAuError_unsupported_resolution;
@@ -407,7 +409,7 @@ XpAuErrorValue XpauStartJob( XpauContext *context, const char *printerfile )
   }
 
   /* Get default printer resolution */   
-  if( XpuGetResolution(context->pdpy, context->pcontext, &context->document_dpi_x, &context->document_dpi_y) != 1 )
+  if( XpuGetResolution(context->pdpy, context->pcontext, &context->document_dpi) != 1 )
   {
     result = XpAuError_no_dpi_set;
   }
@@ -438,11 +440,10 @@ XpAuErrorValue XpauEndJob( XpauContext *context )
    */
   XFlush(context->pdpy);
 
-  context->inJob           = False;
-  context->pscreen         = NULL;
-  context->pscreennumber   = -1;
-  context->document_dpi_x  = 0L;
-  context->document_dpi_y  = 0L;
+  context->inJob         = False;
+  context->pscreen       = NULL;
+  context->pscreennumber = -1;
+  context->document_dpi  = 0L;
      
   if( context->print_to_filehandle )
   {
