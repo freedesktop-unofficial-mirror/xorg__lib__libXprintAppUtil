@@ -1,9 +1,9 @@
 lib_LTLIBRARIES = libXprintAppUtil.la
 
-libXprintAppUtil_la_SOURCES = \ 
+libXprintAppUtil_la_SOURCES = \
          xpapputil.c
 
-INCLUDES = -I$(top_srcdir)/include/X11/XprintAppUtil
+INCLUDES = -I$(top_srcdir)/include
 
 
 libXprintAppUtil_la_LIBADD = @DEP_LIBS@
