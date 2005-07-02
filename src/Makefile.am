@@ -7,6 +7,7 @@ INCLUDES = -I$(top_srcdir)/include
 
 
 libXprintAppUtil_la_LIBADD = @DEP_LIBS@
+libXprintAppUtil_la_CFLAGS = @DEP_CFLAGS@
 
 libXprintAppUtil_la_LDFLAGS = -version-info 7:0:0 -no-undefined
 
