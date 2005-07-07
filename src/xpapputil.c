@@ -40,7 +40,7 @@ XpauContext *XpauGetContext( const char *printername )
   if( XpuGetPrinter(printername, &pdpy, &pcontext) != 1 )
     return NULL; 
   
-  if( context = (XpauContext *)malloc(sizeof(XpauContext)) )
+  if( (context = (XpauContext *)malloc(sizeof(XpauContext))) )
   {
     memset(context, 0, sizeof(XpauContext));
     
