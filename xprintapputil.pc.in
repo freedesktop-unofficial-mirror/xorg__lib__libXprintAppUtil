@@ -6,6 +6,7 @@ includedir=@includedir@
 Name: XprintAppUtil
 Description: The XprintAppUtil Library
 Version: @PACKAGE_VERSION@
-Cflags: -I${includedir} @XPRINTAPPUTIL_CFLAGS@
-Libs: -L${libdir} -lXprintAppUtil @XPRINTAPPUTIL_LIBS@
-
+Requires: xproto x11 xprintutil
+Requires.private: x11 xp xprintutil
+Cflags: -I${includedir}
+Libs: -L${libdir} -lXprintAppUtil
