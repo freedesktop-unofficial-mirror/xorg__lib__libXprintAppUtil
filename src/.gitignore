@@ -1,6 +1,0 @@
-.deps
-.libs
-libXprintAppUtil.la
-*.lo
-Makefile
-Makefile.in

@@ -376,7 +376,6 @@ XpauSetPageValues( XpauContext *context, XpauFlags valuemask, XpauPageValues *pa
 
 XpAuErrorValue XpauStartJob( XpauContext *context, const char *printerfile )
 {
-  void *handle;
   XpAuErrorValue  result = XpAuError_unspecified_error;
   
   XPAU_RETURN_IF_FAIL(context->inJob == False, XpAuError_inside_job);
